@@ -49,9 +49,44 @@ namespace calculator
     // Calculator class to perform operations
     public class Calculator
     {
-        // ---------- TODO ----------
-        
-        // --------------------
+        public int gcd(int par1, int par2){
+            int par3 = 1;
+            while(par3 != 0){
+                par3 = par1 % par2;
+                par1 = par2;
+                par2 = par3;
+            }
+            return par1;
+        }
+        public double Calculate(double num1, string op, double num2) {
+            int par1 = (int)num1;
+            int par2 = (int)num2;
+            switch(op){
+                case "+":
+                    return num1 + num2;
+                case "-":
+                    return num1 - num2;
+                case "*":
+                    return num1 * num2;
+                case "/":
+                    if(num2 == 0){
+                        throw new DivideByZeroException("Division by zero is not allowed");
+                    }
+                    else {
+                        return num1 / num2;
+                    }
+                case "**":
+                    return Math.Pow(num1, num2);
+                case "%":
+                    return num1 % num2;
+                case "G":
+                    return gcd(par1, par2);
+                case "L":
+                    return par1 * par2 / gcd(par1, par2);
+                default:
+                    throw new InvalidOperationException("Invalid operator");
+            }
+        }
     }
 }
 
